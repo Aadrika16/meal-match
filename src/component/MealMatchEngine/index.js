@@ -1434,12 +1434,15 @@ const MealMatchEngine = () => {
 
               <div className="meals-grid">
 
-                {matchedMeals.map(
-                  (meal) => (
+                {matchedMeals.map((meal) => {
+                  const isSelected = !!addedMeals[meal.id];
 
+                  return (
                     <div
                       key={meal.id}
-                      className="meal-card"
+                      className={`meal-card ${isSelected ? "selected" : ""}`}
+                      onClick={() => toggleMealAdd(meal.id)}
+                      style={{ cursor: "pointer" }}
                     >
 
                       <div className="meal-img-container">
@@ -1509,14 +1512,11 @@ const MealMatchEngine = () => {
 
                         </div>
 
-                        
-
                       </div>
 
                     </div>
-
-                  )
-                )}
+                  );
+                })}
 
               </div>
 
