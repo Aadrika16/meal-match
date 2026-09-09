@@ -75,9 +75,11 @@ const Navbar = () => {
           <div className="navbar-actions">
 
             {/* Desktop */}
-            <button className="navbar-cta-btn desktop-action">
-              Get Matched
-            </button>
+            <Link to="/meal-match-plans">
+              <button className="navbar-cta-btn desktop-action">
+                Get Matched
+              </button>
+            </Link>
 
             <button
               className="navbar-profile-icon desktop-action"
@@ -148,15 +150,11 @@ const Navbar = () => {
         </nav>
 
         <div className="mobile-menu-actions">
-
-          <button className="mobile-get-matched">
-            Get Matched
-          </button>
-
-         {/* <button className="mobile-profile-btn">
-            <FaUser />
-            <span>My Account</span>
-          </button> */}
+          <Link to="/meal-match-plans" onClick={closeMenu}>
+            <button className="mobile-get-matched">
+              Get Matched
+            </button>
+          </Link>
 
         </div>
 

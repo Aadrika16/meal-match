@@ -1,8 +1,16 @@
 import React from "react";
 import { FaArrowRight, FaCheck } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import "./index.css";
 
 const Hero = () => {
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="hero-section">
       {/* Right-side background image */}
@@ -41,12 +49,19 @@ const Hero = () => {
 
           {/* Buttons */}
           <div className="hero-buttons">
-            <button className="primary-btn">
+            <Link 
+              to="/meal-match-plans" 
+              className="primary-btn"
+              onClick={() => scrollToSection("meal-match-plans")}
+            >
               Get Your Meal Match
               <FaArrowRight />
-            </button>
+            </Link>
 
-            <button className="secondary-btn">
+            <button 
+              className="secondary-btn"
+              onClick={() => scrollToSection("menu")}
+            >
               Explore the Menu
             </button>
           </div>
