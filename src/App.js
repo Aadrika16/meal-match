@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Home from "./Pages/Home";
 import MealMatchPlans from "./Pages/MealMatchSection";
+import MealMatchEnginePage from "./Pages/MealMatchEnginePage";
 
 import "./App.css";
 
@@ -13,6 +14,10 @@ function App() {
         <Route
           path="/"
           element={<Home />}
+        />
+         <Route
+          path="/meal-match-engine"
+          element={<MealMatchEnginePage />}
         />
 
         <Route

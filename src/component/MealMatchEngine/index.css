@@ -1313,28 +1313,183 @@
 ========================================================= */
 
 .engine-section .step-four-header {
+  width: 100%;
+
   margin-bottom: 28px;
 
+  display: flex;
+
+  flex-direction: row;
+
   align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 28px;
+}
+
+
+/* Left heading section */
+
+.engine-section .step-four-title-area {
+  flex: 1;
+
+  min-width: 0;
 }
 
 
 .engine-section
-.step-four-header > div {
+.step-four-title-area
+.card-step-title {
   width: 100%;
 }
 
 
 .engine-section .match-summary {
-  max-width: 780px;
+  width: 100%;
+
+  max-width: 760px;
 
   margin: 12px 0 0 !important;
 
   font-size: 13px;
 
+  line-height: 1.65;
+
   text-align: left !important;
 }
 
+
+/* =========================================================
+   ALL / VEG / NON-VEG FILTER
+========================================================= */
+
+.engine-section .meal-diet-filter {
+  flex-shrink: 0;
+
+  min-height: 44px;
+
+  padding: 4px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 4px;
+
+  border:
+    1px solid
+    rgba(223, 185, 50, 0.2);
+
+  border-radius: 999px;
+
+  background: #132b20;
+}
+
+
+.engine-section .meal-filter-btn {
+  min-width: 70px;
+
+  min-height: 36px;
+
+  padding:
+    0
+    15px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  outline: none;
+
+  background: transparent;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  font-family:
+    "Inter",
+    Arial,
+    sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.8px;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.engine-section
+.meal-filter-btn:hover {
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.05);
+}
+
+
+.engine-section
+.meal-filter-btn.active {
+  background: #dfb932;
+
+  color: #082317;
+
+  box-shadow:
+    0 5px 16px
+    rgba(223, 185, 50, 0.18);
+}
+
+
+/* =========================================================
+   VEG / NON-VEG DOT
+========================================================= */
+
+.engine-section .diet-dot {
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+}
+
+
+.engine-section .diet-dot-veg {
+  background: #86c95d;
+}
+
+
+.engine-section .diet-dot-nonveg {
+  background: #dd735c;
+}
+
+
+.engine-section
+.meal-filter-btn.active
+.diet-dot {
+  background: #082317;
+}
 
 /* =========================================================
    MEALS GRID
@@ -1394,6 +1549,28 @@
 
 
 /* =========================================================
+   SELECTED MEAL CARD
+========================================================= */
+
+.engine-section .meal-card.selected {
+  border-color: #dfb932;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(223, 185, 50, 0.08),
+      #132b20
+    );
+
+  box-shadow:
+    0 0 0 1px
+    rgba(223, 185, 50, 0.08),
+    0 12px 28px
+    rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
    MEAL IMAGE
 ========================================================= */
 
@@ -1443,6 +1620,80 @@
   font-weight: 700;
 
   letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   MEAL VEG / NON-VEG BADGE
+========================================================= */
+
+.engine-section .meal-diet-badge {
+  position: absolute;
+
+  top: 13px;
+  right: 13px;
+
+  min-height: 24px;
+
+  padding:
+    0
+    9px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(7, 29, 19, 0.92);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.6px;
+
+  z-index: 3;
+}
+
+
+.engine-section
+.meal-diet-badge > span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+}
+
+
+.engine-section
+.meal-diet-badge.veg {
+  color: #91d16d;
+}
+
+
+.engine-section
+.meal-diet-badge.veg
+> span {
+  background: #91d16d;
+}
+
+
+.engine-section
+.meal-diet-badge.nonveg {
+  color: #e27d65;
+}
+
+
+.engine-section
+.meal-diet-badge.nonveg
+> span {
+  background: #e27d65;
 }
 
 
@@ -1579,6 +1830,105 @@
   font-weight: 600;
 
   letter-spacing: 0.6px;
+}
+
+
+/* =========================================================
+   NO FILTER RESULTS
+========================================================= */
+
+.engine-section .meal-filter-empty {
+  grid-column: 1 / -1;
+
+  width: 100%;
+
+  min-height: 260px;
+
+  padding:
+    40px
+    20px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 15px;
+
+  background: #132b20;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+
+.engine-section
+.meal-filter-empty h4 {
+  margin:
+    0
+    0
+    8px;
+
+  color: #f4f1ea;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 25px;
+
+  font-weight: 600;
+}
+
+
+.engine-section
+.meal-filter-empty p {
+  max-width: 350px;
+
+  margin:
+    0
+    0
+    20px;
+
+  color:
+    rgba(255, 255, 255, 0.48);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+
+.engine-section
+.meal-filter-empty button {
+  min-height: 42px;
+
+  padding:
+    0
+    20px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: #dfb932;
+
+  color: #082317;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  cursor: pointer;
 }
 
 
@@ -1732,6 +2082,20 @@
   .meal-card-content {
     padding: 15px;
   }
+
+
+  /* Step 4 filters */
+
+  .engine-section
+  .meal-filter-btn {
+    min-width: 62px;
+
+    padding:
+      0
+      11px;
+
+    font-size: 8.5px;
+  }
 }
 
 
@@ -1764,6 +2128,24 @@
   .engine-section
   .meal-img-container {
     height: 210px !important;
+  }
+
+
+  /* Step 4 filters */
+
+  .engine-section
+  .step-four-header {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 20px;
+  }
+
+
+  .engine-section
+  .meal-diet-filter {
+    width: fit-content;
   }
 }
 
@@ -1939,6 +2321,37 @@
   .meal-img-container {
     height: 195px !important;
   }
+
+
+  /* Step 4 filters */
+
+  .engine-section
+  .step-four-header {
+    gap: 18px;
+  }
+
+
+  .engine-section
+  .meal-diet-filter {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+
+  .engine-section
+  .meal-filter-btn {
+    width: 100%;
+
+    min-width: 0;
+
+    padding:
+      0
+      10px;
+  }
 }
 
 
@@ -2043,6 +2456,31 @@
   .engine-section
   .meal-img-container {
     height: 240px !important;
+  }
+
+
+  /* Step 4 filters */
+
+  .engine-section
+  .step-four-title-area
+  .card-step-title {
+    align-items: flex-start;
+  }
+
+
+  .engine-section
+  .meal-diet-filter {
+    min-height: 42px;
+  }
+
+
+  .engine-section
+  .meal-filter-btn {
+    min-height: 34px;
+
+    font-size: 8px;
+
+    letter-spacing: 0.5px;
   }
 }
 
@@ -2199,6 +2637,60 @@
 
     text-align: center;
   }
+
+
+  /* Step 4 filters */
+
+  .engine-section
+  .step-four-header {
+    margin-bottom: 22px;
+  }
+
+
+  .engine-section
+  .match-summary {
+    margin-top: 10px !important;
+
+    font-size: 11px;
+  }
+
+
+  .engine-section
+  .meal-diet-filter {
+    padding: 3px;
+  }
+
+
+  .engine-section
+  .meal-filter-btn {
+    min-height: 33px;
+
+    padding:
+      0
+      6px;
+
+    gap: 5px;
+
+    font-size: 7.5px;
+  }
+
+
+  .engine-section
+  .diet-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+
+  .engine-section
+  .meal-diet-badge {
+    top: 10px;
+    right: 10px;
+
+    min-height: 22px;
+
+    font-size: 6.5px;
+  }
 }
 
 
@@ -2243,5 +2735,74 @@
   .engine-section
   .meal-img-container {
     height: 190px !important;
+  }
+
+
+  /* Step 4 filters */
+
+  .engine-section
+  .meal-filter-btn {
+    font-size: 7px;
+
+    letter-spacing: 0.25px;
+  }
+
+
+  .engine-section
+  .meal-diet-filter {
+    border-radius: 12px;
+  }
+
+
+  .engine-section
+  .meal-filter-btn {
+    border-radius: 9px;
+  }
+}
+.engine-warning-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  color: #dfbe87 !important;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  line-height: 2;
+}
+
+.engine-warning-icon {
+  flex-shrink: 0;
+
+  color: #dfb932;
+
+  font-size: 16px;
+  margin-top: -5px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .engine-warning-text {
+    font-size: 13px;
+  }
+
+  .engine-warning-icon {
+    font-size: 14px;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  .engine-warning-text {
+    gap: 6px;
+
+    font-size: 12px;
+  }
+
+  .engine-warning-icon {
+    font-size: 13px;
   }
 }

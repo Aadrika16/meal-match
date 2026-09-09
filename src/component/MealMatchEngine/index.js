@@ -1,10 +1,14 @@
 import React, { useMemo, useState } from "react";
+
 import {
   FaArrowRight,
   FaArrowLeft,
   FaBolt,
-} from "react-icons/fa";
+  FaTriangleExclamation,
+} from "react-icons/fa6";
+
 import "./index.css";
+
 
 /* =====================================================
    ACTIVITY LEVELS
@@ -16,27 +20,32 @@ const ACTIVITY_LEVELS = [
     desc: "Desk work, little movement",
     multiplier: 1.2,
   },
+
   {
     title: "Lightly Active",
     desc: "Light exercise 1–3 days",
     multiplier: 1.375,
   },
+
   {
     title: "Moderately Active",
     desc: "Exercise 3–5 days",
     multiplier: 1.55,
   },
+
   {
     title: "Very Active",
     desc: "Hard training 6–7 days",
     multiplier: 1.725,
   },
+
   {
     title: "Athlete / Highly Active",
     desc: "Twice-daily training or physical job",
     multiplier: 1.9,
   },
 ];
+
 
 /* =====================================================
    GOALS
@@ -48,16 +57,19 @@ const GOALS_LIST = [
     desc:
       "Calorie-controlled meals designed to support sustainable weight loss.",
   },
+
   {
     title: "Fat Loss",
     desc:
       "High-protein nutrition designed to preserve muscle while reducing body fat.",
   },
+
   {
     title: "Maintenance",
     desc:
       "Balanced meals to help maintain your current weight and lifestyle.",
   },
+
   {
     title: "Muscle Support",
     desc:
@@ -65,78 +77,222 @@ const GOALS_LIST = [
   },
 ];
 
+
 /* =====================================================
    MEALS
 ===================================================== */
 
 const MEALS_LIST = [
+
+  /* ===================================================
+     NON VEG
+  =================================================== */
+
   {
     id: 1,
     category: "CHICKEN",
+    diet: "nonveg",
+
     name: "Chipotle Chicken & Roast",
+
     calories: 480,
     protein: 41,
     carbs: 34,
     fats: 20,
+
     portion: "Portion 400g",
-    img: "/assets/chipotle-chicken-roast-zoomed-out.webp",
+
+    img:
+      "/assets/chipotle-chicken-roast.webp",
   },
+
   {
     id: 2,
     category: "CHICKEN",
+    diet: "nonveg",
+
     name: "Asian Peanut Chicken",
+
     calories: 505,
     protein: 39,
     carbs: 36,
     fats: 23,
+
     portion: "Portion 400g",
-    img: "/assets/asian-peanut-chicken-zoomed-out.webp",
+
+    img:
+      "/assets/asian-peanut-chicken.webp",
   },
+
   {
     id: 3,
     category: "CHICKEN",
+    diet: "nonveg",
+
     name: "Tandoori Chicken Salad",
+
     calories: 440,
     protein: 44,
     carbs: 26,
     fats: 17,
+
     portion: "Portion 390g",
-    img: "/assets/tandoori-chicken-salad-zoomed-out.webp",
+
+    img:
+      "/assets/tandoori-chicken-salad.webp",
   },
+
   {
     id: 4,
     category: "CHICKEN",
+    diet: "nonveg",
+
     name: "Avocado Chicken Salad",
+
     calories: 520,
     protein: 37,
     carbs: 21,
     fats: 31,
+
     portion: "Portion 380g",
-    img: "/assets/avocado-chicken-salad-zoomed-out.webp",
+
+    img:
+      "/assets/avocado-chicken-salad.webp",
   },
+
   {
     id: 5,
     category: "FISH",
+    diet: "nonveg",
+
     name: "Avocado Fish Salad",
+
     calories: 500,
     protein: 36,
     carbs: 19,
     fats: 30,
+
     portion: "Portion 380g",
-    img: "/assets/avocado-fish-salad-zoomed-out.webp",
+
+    img:
+      "/assets/avocado-fish-salad-zoomed-out.webp",
   },
+
   {
     id: 6,
     category: "CHICKEN",
+    diet: "nonveg",
+
     name: "Chicken Wrap",
+
     calories: 460,
     protein: 38,
     carbs: 43,
     fats: 14,
+
     portion: "Portion 260g",
-    img: "/assets/chicken-wrap-zoomed-out.webp",
+
+    img:
+      "/assets/chicken-wrap-zoomed-out.webp",
+  },
+
+
+  /* ===================================================
+     VEG
+  =================================================== */
+
+  {
+    id: 7,
+    category: "PANEER",
+    diet: "veg",
+
+    name: "Grilled Paneer Salad",
+
+    calories: 420,
+    protein: 29,
+    carbs: 28,
+    fats: 22,
+
+    portion: "Portion 380g",
+
+    img:
+      "/assets/grilled-paneer-salad.png",
+  },
+
+  {
+    id: 8,
+    category: "PANEER",
+    diet: "veg",
+
+    name: "Paneer Shawarma Salad",
+
+    calories: 435,
+    protein: 30,
+    carbs: 32,
+    fats: 21,
+
+    portion: "Portion 390g",
+
+    img:
+      "/assets/paneer-shawarma-salad.png",
+  },
+
+  {
+    id: 9,
+    category: "PANEER",
+    diet: "veg",
+
+    name: "Paneer Wrap",
+
+    calories: 445,
+    protein: 27,
+    carbs: 42,
+    fats: 19,
+
+    portion: "Portion 270g",
+
+    img:
+      "/assets/paneer-wrap-zoomed-out.webp",
+  },
+
+  {
+    id: 10,
+    category: "VEG",
+    diet: "veg",
+
+    name: "Avocado Toast",
+
+    calories: 350,
+    protein: 12,
+    carbs: 38,
+    fats: 18,
+
+    portion: "Portion 220g",
+
+    img:
+      "/assets/avocado-toast-zoomed-out.webp",
+  },
+
+  {
+    id: 11,
+    category: "VEG",
+    diet: "veg",
+
+    name: "Mushroom Cheese Toast",
+
+    calories: 390,
+    protein: 20,
+    carbs: 34,
+    fats: 19,
+
+    portion: "Portion 240g",
+
+    img:
+      "/assets/mushroom-cheese-toast-zoomed-out.webp",
   },
 ];
+
+
 /* =====================================================
    STEPS
 ===================================================== */
@@ -146,274 +302,517 @@ const STEPS = [
     num: 1,
     label: "TELL US ABOUT YOURSELF",
   },
+
   {
     num: 2,
     label: "CHOOSE YOUR GOAL",
   },
+
   {
     num: 3,
     label: "YOUR REQUIREMENTS",
   },
+
   {
     num: 4,
     label: "YOUR MEAL MATCH",
   },
 ];
 
+
 /* =====================================================
    COMPONENT
 ===================================================== */
 
 const MealMatchEngine = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [highestStep, setHighestStep] = useState(1);
 
-  const [unit, setUnit] = useState("metric");
+  /* =====================================================
+     STEPS
+  ===================================================== */
 
-  const [age, setAge] = useState(28);
-  const [gender, setGender] = useState("Female");
+  const [
+    currentStep,
+    setCurrentStep,
+  ] = useState(1);
 
-  const [height, setHeight] = useState(168);
-  const [weight, setWeight] = useState(66);
+  const [
+    highestStep,
+    setHighestStep,
+  ] = useState(1);
 
-  const [activity, setActivity] =
-    useState("Moderately Active");
 
-  const [goal, setGoal] = useState("");
+  /* =====================================================
+     USER VALUES
+  ===================================================== */
 
-  const [addedMeals, setAddedMeals] = useState({});
+  const [
+    unit,
+    setUnit,
+  ] = useState("metric");
+
+
+  const [
+    age,
+    setAge,
+  ] = useState(28);
+
+
+  const [
+    gender,
+    setGender,
+  ] = useState("Female");
+
+
+  const [
+    height,
+    setHeight,
+  ] = useState(168);
+
+
+  const [
+    weight,
+    setWeight,
+  ] = useState(66);
+
+
+  const [
+    activity,
+    setActivity,
+  ] = useState(
+    "Moderately Active"
+  );
+
+
+  const [
+    goal,
+    setGoal,
+  ] = useState("");
+
+
+  /* =====================================================
+     SELECTED MEALS
+  ===================================================== */
+
+  const [
+    addedMeals,
+    setAddedMeals,
+  ] = useState({});
+
+
+  /* =====================================================
+     MEAL FILTER
+  ===================================================== */
+
+  const [
+    mealFilter,
+    setMealFilter,
+  ] = useState("all");
+
 
   /* =====================================================
      UNIT CHANGE
   ===================================================== */
 
-  const handleUnitChange = (newUnit) => {
-    if (newUnit === unit) return;
+  const handleUnitChange = (
+    newUnit
+  ) => {
 
-    if (newUnit === "imperial") {
+    if (
+      newUnit === unit
+    ) {
+      return;
+    }
+
+
+    if (
+      newUnit === "imperial"
+    ) {
+
       setHeight(
-        Math.round(Number(height) / 2.54)
+        Math.round(
+          Number(height) /
+          2.54
+        )
       );
+
 
       setWeight(
-        Math.round(Number(weight) * 2.20462)
+        Math.round(
+          Number(weight) *
+          2.20462
+        )
       );
+
     } else {
+
       setHeight(
-        Math.round(Number(height) * 2.54)
+        Math.round(
+          Number(height) *
+          2.54
+        )
       );
 
+
       setWeight(
-        Math.round(Number(weight) / 2.20462)
+        Math.round(
+          Number(weight) /
+          2.20462
+        )
       );
     }
 
+
     setUnit(newUnit);
   };
+
 
   /* =====================================================
      CONVERT TO METRIC
   ===================================================== */
 
-  const metricValues = useMemo(() => {
-    if (unit === "metric") {
-      return {
-        heightCm: Number(height),
-        weightKg: Number(weight),
-      };
-    }
+  const metricValues =
+    useMemo(() => {
 
-    return {
-      heightCm: Number(height) * 2.54,
-      weightKg: Number(weight) * 0.453592,
-    };
-  }, [unit, height, weight]);
+      if (
+        unit === "metric"
+      ) {
+
+        return {
+
+          heightCm:
+            Number(height),
+
+          weightKg:
+            Number(weight),
+        };
+      }
+
+
+      return {
+
+        heightCm:
+          Number(height) *
+          2.54,
+
+        weightKg:
+          Number(weight) *
+          0.453592,
+      };
+
+    }, [
+      unit,
+      height,
+      weight,
+    ]);
+
 
   /* =====================================================
      BMI
   ===================================================== */
 
-  const bmi = useMemo(() => {
-    const heightMeters =
-      metricValues.heightCm / 100;
+  const bmi =
+    useMemo(() => {
+
+      const heightMeters =
+        metricValues.heightCm /
+        100;
+
+
+      if (
+        heightMeters <= 0 ||
+        metricValues.weightKg <= 0
+      ) {
+
+        return 0;
+      }
+
+
+      return (
+        metricValues.weightKg /
+        (
+          heightMeters *
+          heightMeters
+        )
+      );
+
+    }, [
+      metricValues.heightCm,
+      metricValues.weightKg,
+    ]);
+
+
+  const getBmiStatus = (
+    value
+  ) => {
 
     if (
-      heightMeters <= 0 ||
-      metricValues.weightKg <= 0
+      value < 18.5
     ) {
-      return 0;
-    }
-
-    return (
-      metricValues.weightKg /
-      (heightMeters * heightMeters)
-    );
-  }, [
-    metricValues.heightCm,
-    metricValues.weightKg,
-  ]);
-
-  const getBmiStatus = (value) => {
-    if (value < 18.5) {
       return "Underweight";
     }
 
-    if (value < 25) {
+
+    if (
+      value < 25
+    ) {
       return "Healthy Range";
     }
 
-    if (value < 30) {
+
+    if (
+      value < 30
+    ) {
       return "Overweight";
     }
+
 
     return "Higher Range";
   };
 
-  const bmiStatus = getBmiStatus(bmi);
+
+  const bmiStatus =
+    getBmiStatus(bmi);
+
 
   /* =====================================================
-     BMR - MIFFLIN ST JEOR
+     BMR
+     MIFFLIN ST JEOR
   ===================================================== */
 
-  const bmr = useMemo(() => {
-    const base =
-      10 * metricValues.weightKg +
-      6.25 * metricValues.heightCm -
-      5 * Number(age);
+  const bmr =
+    useMemo(() => {
 
-    if (gender === "Male") {
-      return base + 5;
-    }
+      const base =
+        10 *
+          metricValues.weightKg +
+        6.25 *
+          metricValues.heightCm -
+        5 *
+          Number(age);
 
-    return base - 161;
-  }, [
-    metricValues.weightKg,
-    metricValues.heightCm,
-    age,
-    gender,
-  ]);
+
+      if (
+        gender === "Male"
+      ) {
+
+        return base + 5;
+      }
+
+
+      return base - 161;
+
+    }, [
+      metricValues.weightKg,
+      metricValues.heightCm,
+      age,
+      gender,
+    ]);
+
 
   /* =====================================================
      ACTIVITY MULTIPLIER
   ===================================================== */
 
-  const activityMultiplier = useMemo(() => {
-    const selected =
-      ACTIVITY_LEVELS.find(
-        (item) =>
-          item.title === activity
+  const activityMultiplier =
+    useMemo(() => {
+
+      const selected =
+        ACTIVITY_LEVELS.find(
+          (item) =>
+            item.title ===
+            activity
+        );
+
+
+      return (
+        selected?.multiplier ||
+        1.2
       );
 
-    return selected?.multiplier || 1.2;
-  }, [activity]);
+    }, [
+      activity,
+    ]);
+
 
   /* =====================================================
      MAINTENANCE
   ===================================================== */
 
-  const maintenanceCalories = useMemo(() => {
-    return bmr * activityMultiplier;
-  }, [
-    bmr,
-    activityMultiplier,
-  ]);
+  const maintenanceCalories =
+    useMemo(() => {
+
+      return (
+        bmr *
+        activityMultiplier
+      );
+
+    }, [
+      bmr,
+      activityMultiplier,
+    ]);
+
 
   /* =====================================================
      TARGET CALORIES
   ===================================================== */
 
-  const targetCalories = useMemo(() => {
-    switch (goal) {
-      case "Weight Loss":
-        return maintenanceCalories * 0.8;
+  const targetCalories =
+    useMemo(() => {
 
-      case "Fat Loss":
-        return maintenanceCalories * 0.85;
+      switch (goal) {
 
-      case "Muscle Support":
-        return maintenanceCalories * 1.1;
+        case "Weight Loss":
 
-      case "Maintenance":
-      default:
-        return maintenanceCalories;
-    }
-  }, [
-    maintenanceCalories,
-    goal,
-  ]);
+          return (
+            maintenanceCalories *
+            0.8
+          );
+
+
+        case "Fat Loss":
+
+          return (
+            maintenanceCalories *
+            0.85
+          );
+
+
+        case "Muscle Support":
+
+          return (
+            maintenanceCalories *
+            1.1
+          );
+
+
+        case "Maintenance":
+
+        default:
+
+          return (
+            maintenanceCalories
+          );
+      }
+
+    }, [
+      maintenanceCalories,
+      goal,
+    ]);
+
 
   /* =====================================================
      PROTEIN
   ===================================================== */
 
-  const protein = useMemo(() => {
-    let multiplier = 1.6;
+  const protein =
+    useMemo(() => {
 
-    if (goal === "Weight Loss") {
-      multiplier = 1.8;
-    }
+      let multiplier = 1.6;
 
-    if (goal === "Fat Loss") {
-      multiplier = 2;
-    }
 
-    if (goal === "Muscle Support") {
-      multiplier = 2;
-    }
+      if (
+        goal ===
+        "Weight Loss"
+      ) {
 
-    return (
-      metricValues.weightKg *
-      multiplier
-    );
-  }, [
-    metricValues.weightKg,
-    goal,
-  ]);
+        multiplier = 1.8;
+      }
+
+
+      if (
+        goal ===
+        "Fat Loss"
+      ) {
+
+        multiplier = 2;
+      }
+
+
+      if (
+        goal ===
+        "Muscle Support"
+      ) {
+
+        multiplier = 2;
+      }
+
+
+      return (
+        metricValues.weightKg *
+        multiplier
+      );
+
+    }, [
+      metricValues.weightKg,
+      goal,
+    ]);
+
 
   /* =====================================================
      FATS
   ===================================================== */
 
-  const fats = useMemo(() => {
-    return (
-      (targetCalories * 0.25) /
-      9
-    );
-  }, [targetCalories]);
+  const fats =
+    useMemo(() => {
+
+      return (
+        (
+          targetCalories *
+          0.25
+        ) /
+        9
+      );
+
+    }, [
+      targetCalories,
+    ]);
+
 
   /* =====================================================
      CARBS
   ===================================================== */
 
-  const carbs = useMemo(() => {
-    const proteinCalories =
-      protein * 4;
+  const carbs =
+    useMemo(() => {
 
-    const fatCalories =
-      fats * 9;
+      const proteinCalories =
+        protein *
+        4;
 
-    const remaining =
-      targetCalories -
-      proteinCalories -
-      fatCalories;
 
-    return Math.max(
-      remaining / 4,
-      0
-    );
-  }, [
-    targetCalories,
-    protein,
-    fats,
-  ]);
+      const fatCalories =
+        fats *
+        9;
+
+
+      const remaining =
+        targetCalories -
+        proteinCalories -
+        fatCalories;
+
+
+      return Math.max(
+        remaining /
+        4,
+        0
+      );
+
+    }, [
+      targetCalories,
+      protein,
+      fats,
+    ]);
+
 
   /* =====================================================
-     FINAL NUTRITION DATA
+     NUTRITION REQUIREMENTS
   ===================================================== */
 
   const nutritionRequirements =
     useMemo(() => {
+
       return {
+
         bmi:
           bmi.toFixed(1),
 
@@ -443,22 +842,29 @@ const MealMatchEngine = () => {
 
         protein:
           Math.max(
-            Math.round(protein),
+            Math.round(
+              protein
+            ),
             0
           ),
 
         carbs:
           Math.max(
-            Math.round(carbs),
+            Math.round(
+              carbs
+            ),
             0
           ),
 
         fats:
           Math.max(
-            Math.round(fats),
+            Math.round(
+              fats
+            ),
             0
           ),
       };
+
     }, [
       bmi,
       bmiStatus,
@@ -470,6 +876,7 @@ const MealMatchEngine = () => {
       fats,
     ]);
 
+
   /* =====================================================
      SLIDER PROGRESS
   ===================================================== */
@@ -479,112 +886,245 @@ const MealMatchEngine = () => {
     min,
     max
   ) => {
+
     return (
-      ((Number(value) - min) /
-        (max - min)) *
+      (
+        (
+          Number(value) -
+          min
+        ) /
+        (
+          max -
+          min
+        )
+      ) *
       100
     );
   };
 
+
   /* =====================================================
-     NAVIGATION
+     STEP NAVIGATION
   ===================================================== */
 
-  const goToStep = (step) => {
-    if (step <= highestStep) {
-      setCurrentStep(step);
+  const goToStep = (
+    step
+  ) => {
+
+    if (
+      step <=
+      highestStep
+    ) {
+
+      setCurrentStep(
+        step
+      );
     }
   };
 
+
   const handleChooseGoal = () => {
-    setHighestStep((prev) =>
-      Math.max(prev, 2)
+
+    setHighestStep(
+      (prev) =>
+        Math.max(
+          prev,
+          2
+        )
     );
+
 
     setCurrentStep(2);
   };
 
-  const handleCalculate = () => {
-    if (!goal) return;
 
-    setHighestStep((prev) =>
-      Math.max(prev, 3)
+  const handleCalculate = () => {
+
+    if (
+      !goal
+    ) {
+      return;
+    }
+
+
+    setHighestStep(
+      (prev) =>
+        Math.max(
+          prev,
+          3
+        )
     );
+
 
     setCurrentStep(3);
   };
 
+
   const handleFindMeals = () => {
-    setHighestStep((prev) =>
-      Math.max(prev, 4)
+
+    setHighestStep(
+      (prev) =>
+        Math.max(
+          prev,
+          4
+        )
     );
+
 
     setCurrentStep(4);
   };
 
+
   /* =====================================================
-     MEAL ADD
+     ADD / REMOVE MEAL
   ===================================================== */
 
-  const toggleMealAdd = (id) => {
-    setAddedMeals((prev) => ({
-      ...prev,
+  const toggleMealAdd = (
+    id
+  ) => {
 
-      [id]: !prev[id],
-    }));
+    setAddedMeals(
+      (prev) => ({
+
+        ...prev,
+
+        [id]:
+          !prev[id],
+      })
+    );
   };
+
 
   const selectedMealsCount =
     Object.values(
       addedMeals
     ).filter(Boolean).length;
 
+
   /* =====================================================
      MATCH MEALS
   ===================================================== */
 
-  const matchedMeals = useMemo(() => {
-    const meals = [...MEALS_LIST];
+  const matchedMeals =
+    useMemo(() => {
 
-    if (
-      goal === "Weight Loss" ||
-      goal === "Fat Loss"
-    ) {
-      return meals.sort((a, b) => {
-        const scoreA =
-          a.protein * 5 -
-          a.calories;
+      const meals =
+        [
+          ...MEALS_LIST,
+        ];
 
-        const scoreB =
-          b.protein * 5 -
-          b.calories;
 
-        return scoreB - scoreA;
-      });
-    }
+      if (
+        goal ===
+          "Weight Loss" ||
+        goal ===
+          "Fat Loss"
+      ) {
 
-    if (
-      goal === "Muscle Support"
-    ) {
-      return meals.sort(
-        (a, b) =>
-          b.protein -
-          a.protein
-      );
-    }
+        return meals.sort(
+          (
+            a,
+            b
+          ) => {
 
-    return meals;
-  }, [goal]);
+            const scoreA =
+              a.protein *
+              5 -
+              a.calories;
+
+
+            const scoreB =
+              b.protein *
+              5 -
+              b.calories;
+
+
+            return (
+              scoreB -
+              scoreA
+            );
+          }
+        );
+      }
+
+
+      if (
+        goal ===
+        "Muscle Support"
+      ) {
+
+        return meals.sort(
+          (
+            a,
+            b
+          ) =>
+            b.protein -
+            a.protein
+        );
+      }
+
+
+      return meals;
+
+    }, [
+      goal,
+    ]);
+
+
+  /* =====================================================
+     ALL / VEG / NON VEG FILTER
+  ===================================================== */
+
+  const filteredMeals =
+    useMemo(() => {
+
+      if (
+        mealFilter === "veg"
+      ) {
+
+        return matchedMeals.filter(
+          (meal) =>
+            meal.diet ===
+            "veg"
+        );
+      }
+
+
+      if (
+        mealFilter ===
+        "nonveg"
+      ) {
+
+        return matchedMeals.filter(
+          (meal) =>
+            meal.diet ===
+            "nonveg"
+        );
+      }
+
+
+      return matchedMeals;
+
+    }, [
+      matchedMeals,
+      mealFilter,
+    ]);
+
+
+  /* =====================================================
+     JSX
+  ===================================================== */
 
   return (
+
     <section className="engine-section">
 
       <div className="engine-container">
 
-        {/* HEADER */}
-
+        {/* =================================================
+            HEADER
+        ================================================= */}
         <div className="engine-header">
-
           <span className="engine-eyebrow">
             THE MEAL MATCH ENGINE
           </span>
@@ -592,14 +1132,16 @@ const MealMatchEngine = () => {
           <h2 className="engine-title">
             Let's Find Your Match.
           </h2>
+          <p className="engine-subtitle engine-warning-text">
+            <FaTriangleExclamation className="engine-warning-icon" />
 
-          <p className="engine-subtitle">
-            Your body, lifestyle and
-            goals are different. Your
-            meals should be too.
+            <span>
+              This is not a fixed menu! We are into customisation.
+            </span>
           </p>
 
         </div>
+
 
         {/* =================================================
             STEP INDICATOR
@@ -608,45 +1150,67 @@ const MealMatchEngine = () => {
         <div className="engine-steps">
 
           {STEPS.map(
-            (step, index) => {
+            (
+              step,
+              index
+            ) => {
+
               const isActive =
-                currentStep === step.num;
+                currentStep ===
+                step.num;
+
 
               const isCompleted =
-                step.num < currentStep;
+                step.num <
+                currentStep;
+
 
               const isAvailable =
-                step.num <= highestStep;
+                step.num <=
+                highestStep;
+
 
               return (
+
                 <React.Fragment
-                  key={step.num}
+                  key={
+                    step.num
+                  }
                 >
 
                   {index > 0 && (
+
                     <div
-                      className={`step-line ${
-                        step.num <=
-                        currentStep
-                          ? "completed"
-                          : ""
-                      }`}
+                      className={`
+                        step-line
+                        ${
+                          step.num <=
+                          currentStep
+                            ? "completed"
+                            : ""
+                        }
+                      `}
                     />
+
                   )}
+
 
                   <div
                     className={`
                       step-item
+
                       ${
                         isActive
                           ? "active"
                           : ""
                       }
+
                       ${
                         isCompleted
                           ? "completed"
                           : ""
                       }
+
                       ${
                         !isAvailable
                           ? "locked"
@@ -654,9 +1218,11 @@ const MealMatchEngine = () => {
                       }
                     `}
                     onClick={() => {
+
                       if (
                         isAvailable
                       ) {
+
                         goToStep(
                           step.num
                         );
@@ -681,8 +1247,13 @@ const MealMatchEngine = () => {
 
                     </div>
 
+
                     <span className="step-label">
-                      {step.label}
+
+                      {
+                        step.label
+                      }
+
                     </span>
 
                   </div>
@@ -694,11 +1265,13 @@ const MealMatchEngine = () => {
 
         </div>
 
+
         {/* =================================================
-            CARD
+            MAIN CARD
         ================================================= */}
 
         <div className="engine-card">
+
 
           {/* =================================================
               STEP 1
@@ -712,21 +1285,28 @@ const MealMatchEngine = () => {
 
                 <h3 className="card-step-title">
 
-                  <span>01</span>
+                  <span>
+                    01
+                  </span>
 
                   Tell us about yourself
 
                 </h3>
 
+
                 <div className="unit-toggle">
 
                   <button
                     type="button"
-                    className={`unit-btn ${
-                      unit === "metric"
-                        ? "active"
-                        : ""
-                    }`}
+                    className={`
+                      unit-btn
+                      ${
+                        unit ===
+                        "metric"
+                          ? "active"
+                          : ""
+                      }
+                    `}
                     onClick={() =>
                       handleUnitChange(
                         "metric"
@@ -736,14 +1316,18 @@ const MealMatchEngine = () => {
                     Metric
                   </button>
 
+
                   <button
                     type="button"
-                    className={`unit-btn ${
-                      unit ===
-                      "imperial"
-                        ? "active"
-                        : ""
-                    }`}
+                    className={`
+                      unit-btn
+                      ${
+                        unit ===
+                        "imperial"
+                          ? "active"
+                          : ""
+                      }
+                    `}
                     onClick={() =>
                       handleUnitChange(
                         "imperial"
@@ -757,9 +1341,11 @@ const MealMatchEngine = () => {
 
               </div>
 
+
               {/* INPUTS */}
 
               <div className="engine-inputs-grid">
+
 
                 {/* AGE */}
 
@@ -776,6 +1362,7 @@ const MealMatchEngine = () => {
                     </span>
 
                   </div>
+
 
                   <input
                     type="range"
@@ -802,6 +1389,7 @@ const MealMatchEngine = () => {
 
                 </div>
 
+
                 {/* GENDER */}
 
                 <div className="engine-input-box">
@@ -818,16 +1406,20 @@ const MealMatchEngine = () => {
 
                   </div>
 
+
                   <div className="gender-options">
 
                     <button
                       type="button"
-                      className={`gender-btn ${
-                        gender ===
-                        "Female"
-                          ? "active"
-                          : ""
-                      }`}
+                      className={`
+                        gender-btn
+                        ${
+                          gender ===
+                          "Female"
+                            ? "active"
+                            : ""
+                        }
+                      `}
                       onClick={() =>
                         setGender(
                           "Female"
@@ -837,14 +1429,18 @@ const MealMatchEngine = () => {
                       Female
                     </button>
 
+
                     <button
                       type="button"
-                      className={`gender-btn ${
-                        gender ===
-                        "Male"
-                          ? "active"
-                          : ""
-                      }`}
+                      className={`
+                        gender-btn
+                        ${
+                          gender ===
+                          "Male"
+                            ? "active"
+                            : ""
+                        }
+                      `}
                       onClick={() =>
                         setGender(
                           "Male"
@@ -858,6 +1454,7 @@ const MealMatchEngine = () => {
 
                 </div>
 
+
                 {/* HEIGHT */}
 
                 <div className="engine-input-box">
@@ -868,11 +1465,13 @@ const MealMatchEngine = () => {
                       HEIGHT
                     </span>
 
+
                     <span className="box-value">
 
                       {height}
 
-                      {unit === "metric"
+                      {unit ===
+                      "metric"
                         ? " cm"
                         : " in"}
 
@@ -880,15 +1479,18 @@ const MealMatchEngine = () => {
 
                   </div>
 
+
                   <input
                     type="range"
                     min={
-                      unit === "metric"
+                      unit ===
+                      "metric"
                         ? 120
                         : 48
                     }
                     max={
-                      unit === "metric"
+                      unit ===
+                      "metric"
                         ? 220
                         : 86
                     }
@@ -919,6 +1521,7 @@ const MealMatchEngine = () => {
 
                 </div>
 
+
                 {/* WEIGHT */}
 
                 <div className="engine-input-box">
@@ -929,11 +1532,13 @@ const MealMatchEngine = () => {
                       WEIGHT
                     </span>
 
+
                     <span className="box-value">
 
                       {weight}
 
-                      {unit === "metric"
+                      {unit ===
+                      "metric"
                         ? " kg"
                         : " lbs"}
 
@@ -941,15 +1546,18 @@ const MealMatchEngine = () => {
 
                   </div>
 
+
                   <input
                     type="range"
                     min={
-                      unit === "metric"
+                      unit ===
+                      "metric"
                         ? 40
                         : 88
                     }
                     max={
-                      unit === "metric"
+                      unit ===
+                      "metric"
                         ? 150
                         : 330
                     }
@@ -982,6 +1590,7 @@ const MealMatchEngine = () => {
 
               </div>
 
+
               {/* ACTIVITY */}
 
               <div className="activity-section">
@@ -990,19 +1599,25 @@ const MealMatchEngine = () => {
                   ACTIVITY LEVEL
                 </span>
 
+
                 <div className="activity-grid">
 
                   {ACTIVITY_LEVELS.map(
                     (item) => (
 
                       <div
-                        key={item.title}
-                        className={`activity-card ${
-                          activity ===
+                        key={
                           item.title
-                            ? "active"
-                            : ""
-                        }`}
+                        }
+                        className={`
+                          activity-card
+                          ${
+                            activity ===
+                            item.title
+                              ? "active"
+                              : ""
+                          }
+                        `}
                         onClick={() =>
                           setActivity(
                             item.title
@@ -1011,11 +1626,20 @@ const MealMatchEngine = () => {
                       >
 
                         <h4 className="activity-title">
-                          {item.title}
+
+                          {
+                            item.title
+                          }
+
                         </h4>
 
+
                         <p className="activity-desc">
-                          {item.desc}
+
+                          {
+                            item.desc
+                          }
+
                         </p>
 
                       </div>
@@ -1027,6 +1651,7 @@ const MealMatchEngine = () => {
 
               </div>
 
+
               {/* BMI */}
 
               <div className="bmi-preview-banner">
@@ -1034,14 +1659,20 @@ const MealMatchEngine = () => {
                 <div className="bmi-left">
 
                   <div className="bmi-icon-wrapper">
+
                     <FaBolt />
+
                   </div>
+
 
                   <div>
 
                     <span className="bmi-eyebrow">
+
                       BMI PREVIEW
+
                     </span>
+
 
                     <div className="bmi-stat">
 
@@ -1049,10 +1680,13 @@ const MealMatchEngine = () => {
                         nutritionRequirements.bmi
                       }
 
+
                       <span className="bmi-status">
+
                         {
                           nutritionRequirements.bmiStatus
                         }
+
                       </span>
 
                     </div>
@@ -1061,6 +1695,7 @@ const MealMatchEngine = () => {
 
                 </div>
 
+
                 <button
                   type="button"
                   className="choose-goal-btn"
@@ -1068,8 +1703,11 @@ const MealMatchEngine = () => {
                     handleChooseGoal
                   }
                 >
+
                   Choose my goal
+
                   <FaArrowRight />
+
                 </button>
 
               </div>
@@ -1077,6 +1715,7 @@ const MealMatchEngine = () => {
             </div>
 
           )}
+
 
           {/* =================================================
               STEP 2
@@ -1090,7 +1729,9 @@ const MealMatchEngine = () => {
 
                 <h3 className="card-step-title">
 
-                  <span>02</span>
+                  <span>
+                    02
+                  </span>
 
                   Choose your goal
 
@@ -1098,19 +1739,25 @@ const MealMatchEngine = () => {
 
               </div>
 
+
               <div className="activity-grid goal-grid">
 
                 {GOALS_LIST.map(
                   (item) => (
 
                     <div
-                      key={item.title}
-                      className={`activity-card ${
-                        goal ===
+                      key={
                         item.title
-                          ? "active"
-                          : ""
-                      }`}
+                      }
+                      className={`
+                        activity-card
+                        ${
+                          goal ===
+                          item.title
+                            ? "active"
+                            : ""
+                        }
+                      `}
                       onClick={() =>
                         setGoal(
                           item.title
@@ -1119,11 +1766,20 @@ const MealMatchEngine = () => {
                     >
 
                       <h4 className="activity-title">
-                        {item.title}
+
+                        {
+                          item.title
+                        }
+
                       </h4>
 
+
                       <p className="activity-desc">
-                        {item.desc}
+
+                        {
+                          item.desc
+                        }
+
                       </p>
 
                     </div>
@@ -1132,6 +1788,7 @@ const MealMatchEngine = () => {
                 )}
 
               </div>
+
 
               <div className="nav-buttons-row">
 
@@ -1142,9 +1799,13 @@ const MealMatchEngine = () => {
                     setCurrentStep(1)
                   }
                 >
+
                   <FaArrowLeft />
+
                   Back
+
                 </button>
+
 
                 <button
                   type="button"
@@ -1152,10 +1813,15 @@ const MealMatchEngine = () => {
                   onClick={
                     handleCalculate
                   }
-                  disabled={!goal}
+                  disabled={
+                    !goal
+                  }
                 >
+
                   Calculate my numbers
+
                   <FaArrowRight />
+
                 </button>
 
               </div>
@@ -1163,6 +1829,7 @@ const MealMatchEngine = () => {
             </div>
 
           )}
+
 
           {/* =================================================
               STEP 3
@@ -1176,7 +1843,9 @@ const MealMatchEngine = () => {
 
                 <h3 className="card-step-title">
 
-                  <span>03</span>
+                  <span>
+                    03
+                  </span>
 
                   Your calculated requirements
 
@@ -1184,13 +1853,17 @@ const MealMatchEngine = () => {
 
               </div>
 
+
               <div className="requirements-grid">
 
                 <div className="requirements-main-box">
 
                   <span className="req-eyebrow">
+
                     YOUR DAILY MATCH
+
                   </span>
+
 
                   <div className="req-big-cals">
 
@@ -1203,6 +1876,7 @@ const MealMatchEngine = () => {
                     </span>
 
                   </div>
+
 
                   <div className="req-macros-row">
 
@@ -1222,6 +1896,7 @@ const MealMatchEngine = () => {
 
                     </div>
 
+
                     <div className="macro-box">
 
                       <span className="macro-val">
@@ -1237,6 +1912,7 @@ const MealMatchEngine = () => {
                       </span>
 
                     </div>
+
 
                     <div className="macro-box">
 
@@ -1258,11 +1934,14 @@ const MealMatchEngine = () => {
 
                 </div>
 
+
                 <div className="requirements-list-side">
 
                   <div className="req-info-row">
 
-                    <span>BMI</span>
+                    <span>
+                      BMI
+                    </span>
 
                     <span className="req-info-val">
 
@@ -1280,11 +1959,13 @@ const MealMatchEngine = () => {
 
                   </div>
 
+
                   <div className="req-info-row">
 
                     <span>
                       BMR (Mifflin–St Jeor)
                     </span>
+
 
                     <span className="req-info-val">
 
@@ -1296,11 +1977,13 @@ const MealMatchEngine = () => {
 
                   </div>
 
+
                   <div className="req-info-row">
 
                     <span>
                       Estimated maintenance
                     </span>
+
 
                     <span className="req-info-val">
 
@@ -1312,11 +1995,13 @@ const MealMatchEngine = () => {
 
                   </div>
 
+
                   <div className="req-info-row">
 
                     <span>
                       Goal target
                     </span>
+
 
                     <span className="req-info-val">
 
@@ -1328,18 +2013,21 @@ const MealMatchEngine = () => {
 
                   </div>
 
+
                   <p className="req-disclaimer">
-                    These estimates are
-                    for general nutrition
-                    guidance only and are
-                    not a medical diagnosis
-                    or individualized
+
+                    These estimates are for
+                    general nutrition guidance
+                    only and are not a medical
+                    diagnosis or individualized
                     clinical nutrition plan.
+
                   </p>
 
                 </div>
 
               </div>
+
 
               <div className="nav-buttons-row">
 
@@ -1350,9 +2038,13 @@ const MealMatchEngine = () => {
                     setCurrentStep(2)
                   }
                 >
+
                   <FaArrowLeft />
+
                   Back
+
                 </button>
+
 
                 <button
                   type="button"
@@ -1361,8 +2053,11 @@ const MealMatchEngine = () => {
                     handleFindMeals
                   }
                 >
+
                   Show My Nutrition Match
+
                   <FaArrowRight />
+
                 </button>
 
               </div>
@@ -1370,6 +2065,7 @@ const MealMatchEngine = () => {
             </div>
 
           )}
+
 
           {/* =================================================
               STEP 4
@@ -1379,17 +2075,26 @@ const MealMatchEngine = () => {
 
             <div className="step-content-wrapper">
 
+              {/* =============================================
+                  STEP 4 HEADER
+              ============================================= */}
+
               <div className="card-header-row step-four-header">
 
-                <div>
+                {/* LEFT */}
+
+                <div className="step-four-title-area">
 
                   <h3 className="card-step-title">
 
-                    <span>04</span>
+                    <span>
+                      04
+                    </span>
 
                     Here's Your Nutrition Match
 
                   </h3>
+
 
                   <p className="engine-subtitle match-summary">
 
@@ -1430,95 +2135,321 @@ const MealMatchEngine = () => {
 
                 </div>
 
+
+                {/* =========================================
+                    FILTER BUTTONS
+                ========================================= */}
+
+                <div className="meal-diet-filter">
+
+                  <button
+                    type="button"
+                    className={`
+                      meal-filter-btn
+                      ${
+                        mealFilter ===
+                        "all"
+                          ? "active"
+                          : ""
+                      }
+                    `}
+                    onClick={() =>
+                      setMealFilter(
+                        "all"
+                      )
+                    }
+                  >
+                    ALL
+                  </button>
+
+
+                  <button
+                    type="button"
+                    className={`
+                      meal-filter-btn
+                      ${
+                        mealFilter ===
+                        "veg"
+                          ? "active"
+                          : ""
+                      }
+                    `}
+                    onClick={() =>
+                      setMealFilter(
+                        "veg"
+                      )
+                    }
+                  >
+
+                    <span className="diet-dot diet-dot-veg" />
+
+                    VEG
+
+                  </button>
+
+
+                  <button
+                    type="button"
+                    className={`
+                      meal-filter-btn
+                      ${
+                        mealFilter ===
+                        "nonveg"
+                          ? "active"
+                          : ""
+                      }
+                    `}
+                    onClick={() =>
+                      setMealFilter(
+                        "nonveg"
+                      )
+                    }
+                  >
+
+                    <span className="diet-dot diet-dot-nonveg" />
+
+                    NON-VEG
+
+                  </button>
+
+                </div>
+
               </div>
+
+
+              {/* =============================================
+                  MEALS
+              ============================================= */}
 
               <div className="meals-grid">
 
-                {matchedMeals.map((meal) => {
-                  const isSelected = !!addedMeals[meal.id];
+                {filteredMeals.length >
+                0 ? (
 
-                  return (
-                    <div
-                      key={meal.id}
-                      className={`meal-card ${isSelected ? "selected" : ""}`}
-                      onClick={() => toggleMealAdd(meal.id)}
-                      style={{ cursor: "pointer" }}
+                  filteredMeals.map(
+                    (meal) => {
+
+                      const isSelected =
+                        !!addedMeals[
+                          meal.id
+                        ];
+
+
+                      return (
+
+                        <div
+                          key={
+                            meal.id
+                          }
+                          className={`
+                            meal-card
+                            ${
+                              isSelected
+                                ? "selected"
+                                : ""
+                            }
+                          `}
+                          onClick={() =>
+                            toggleMealAdd(
+                              meal.id
+                            )
+                          }
+                        >
+
+                          {/* IMAGE */}
+
+                          <div className="meal-img-container">
+
+                            <img
+                              src={
+                                meal.img
+                              }
+                              alt={
+                                meal.name
+                              }
+                              loading="lazy"
+                            />
+
+
+                            <span className="meal-badge">
+
+                              {
+                                meal.category
+                              }
+
+                            </span>
+
+
+                            {/* VEG / NON VEG BADGE */}
+
+                            <span
+                              className={`
+                                meal-diet-badge
+                                ${
+                                  meal.diet ===
+                                  "veg"
+                                    ? "veg"
+                                    : "nonveg"
+                                }
+                              `}
+                            >
+
+                              <span />
+
+
+                              {
+                                meal.diet ===
+                                "veg"
+                                  ? "VEG"
+                                  : "NON-VEG"
+                              }
+
+                            </span>
+
+                          </div>
+
+
+                          {/* CONTENT */}
+
+                          <div className="meal-card-content">
+
+                            <div className="meal-title-row">
+
+                              <h4 className="meal-name">
+
+                                {
+                                  meal.name
+                                }
+
+                              </h4>
+
+
+                              <span className="meal-cals">
+
+                                {
+                                  meal.calories
+                                } kcal
+
+                              </span>
+
+                            </div>
+
+
+                            {/* MACROS */}
+
+                            <div className="meal-macros-grid">
+
+                              <div className="meal-macro-box">
+
+                                <span className="m-val">
+
+                                  {
+                                    meal.protein
+                                  }g
+
+                                </span>
+
+
+                                <span className="m-lbl">
+
+                                  PROTEIN
+
+                                </span>
+
+                              </div>
+
+
+                              <div className="meal-macro-box">
+
+                                <span className="m-val">
+
+                                  {
+                                    meal.carbs
+                                  }g
+
+                                </span>
+
+
+                                <span className="m-lbl">
+
+                                  CARBS
+
+                                </span>
+
+                              </div>
+
+
+                              <div className="meal-macro-box">
+
+                                <span className="m-val">
+
+                                  {
+                                    meal.fats
+                                  }g
+
+                                </span>
+
+
+                                <span className="m-lbl">
+
+                                  FATS
+
+                                </span>
+
+                              </div>
+
+                            </div>
+
+                          </div>
+
+                        </div>
+                      );
+                    }
+                  )
+
+                ) : (
+
+                  <div className="meal-filter-empty">
+
+                    <h4>
+
+                      No meals available
+
+                    </h4>
+
+
+                    <p>
+
+                      We don't currently have
+                      meals available under
+                      this category.
+
+                    </p>
+
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setMealFilter(
+                          "all"
+                        )
+                      }
                     >
 
-                      <div className="meal-img-container">
+                      View All Meals
 
-                        <img
-                          src={meal.img}
-                          alt={meal.name}
-                        />
+                    </button>
 
-                        <span className="meal-badge">
-                          {meal.category}
-                        </span>
+                  </div>
 
-                      </div>
-
-                      <div className="meal-card-content">
-
-                        <div className="meal-title-row">
-
-                          <h4 className="meal-name">
-                            {meal.name}
-                          </h4>
-
-                          <span className="meal-cals">
-                            {meal.calories} kcal
-                          </span>
-
-                        </div>
-
-                        <div className="meal-macros-grid">
-
-                          <div className="meal-macro-box">
-
-                            <span className="m-val">
-                              {meal.protein}g
-                            </span>
-
-                            <span className="m-lbl">
-                              PROTEIN
-                            </span>
-
-                          </div>
-
-                          <div className="meal-macro-box">
-
-                            <span className="m-val">
-                              {meal.carbs}g
-                            </span>
-
-                            <span className="m-lbl">
-                              CARBS
-                            </span>
-
-                          </div>
-
-                          <div className="meal-macro-box">
-
-                            <span className="m-val">
-                              {meal.fats}g
-                            </span>
-
-                            <span className="m-lbl">
-                              FATS
-                            </span>
-
-                          </div>
-
-                        </div>
-
-                      </div>
-
-                    </div>
-                  );
-                })}
+                )}
 
               </div>
+
+
+              {/* =============================================
+                  FINAL NAVIGATION
+              ============================================= */}
 
               <div className="nav-buttons-row final-nav-row">
 
@@ -1529,9 +2460,13 @@ const MealMatchEngine = () => {
                     setCurrentStep(3)
                   }
                 >
+
                   <FaArrowLeft />
+
                   Back
+
                 </button>
+
 
                 <span className="selected-meals-counter">
 
@@ -1555,5 +2490,6 @@ const MealMatchEngine = () => {
     </section>
   );
 };
+
 
 export default MealMatchEngine;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaUser, FaBars, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./index.css";
 
 const Navbar = () => {
@@ -66,7 +67,7 @@ const Navbar = () => {
           <nav className="navbar-links desktop-nav">
             <a href="#home">Home</a>
             <a href="#menu">Menu</a>
-            <a href="#meal-plans">Meal Plans</a>
+            <Link to="/meal-match-plans">Meal Plans</Link>
             <a href="#faq">FAQ</a>
           </nav>
 
@@ -136,9 +137,9 @@ const Navbar = () => {
             Menu
           </a>
 
-          <a href="#meal-plans" onClick={closeMenu}>
+          <Link to="/meal-match-plans" onClick={closeMenu}>
             Meal Plans
-          </a>
+          </Link>
 
           <a href="#faq" onClick={closeMenu}>
             FAQ
