@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';
@@ -37,6 +38,8 @@ export default function Footer() {
               href="https://www.instagram.com/mealmatch_hyderabad/"
               aria-label="Instagram"
               className="social-icon-btn"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +69,7 @@ export default function Footer() {
               </svg>
             </a>
 
-            {/* Facebook
+            {/* Facebook - currently disabled
             <a
               href="#home"
               aria-label="Facebook"
@@ -86,9 +89,9 @@ export default function Footer() {
                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
               </svg>
             </a>
+            */}
 
- */}
-            {/* Twitter 
+            {/* Twitter - currently disabled
             <a
               href="#home"
               aria-label="Twitter"
@@ -108,8 +111,9 @@ export default function Footer() {
                 <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
               </svg>
             </a>
+            */}
 
-            {/* YouTube */}
+            {/* YouTube - currently disabled
             <a
               href="#home"
               aria-label="YouTube"
@@ -133,7 +137,8 @@ export default function Footer() {
                 />
               </svg>
             </a>
-*/}
+            */}
+
           </div>
         </div>
 
@@ -148,13 +153,15 @@ export default function Footer() {
           </p>
 
           <ul className="footer-links">
-{/*
+
+            {/* How It Works - currently disabled
             <li>
               <a href="#how-it-works">
                 How It Works
               </a>
             </li>
-*/}
+            */}
+
             <li>
               <a href="#menu">
                 Menu
@@ -167,7 +174,8 @@ export default function Footer() {
               </Link>
             </li>
 
-            {/**<li>
+            {/* Nutrition & About Us - currently disabled
+            <li>
               <a href="#why-match">
                 Nutrition
               </a>
@@ -178,19 +186,22 @@ export default function Footer() {
                 About Us
               </Link>
             </li>
-**/}
+            */}
+
             <li>
               <a href="#faq">
                 FAQ
               </a>
             </li>
-{/*
+
+            {/* Contact - currently disabled
             <li>
               <Link to="/">
                 Contact
               </Link>
             </li>
-*/}
+            */}
+
           </ul>
         </nav>
 
@@ -262,4 +273,4 @@ export default function Footer() {
 
     </footer>
   );
-}
+};
