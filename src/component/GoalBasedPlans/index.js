@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './index.css';
 
 const plansData = [
@@ -69,7 +70,7 @@ export default function GoalBasedPlans() {
               </ul>
 
               <div className="plan-card-footer">
-                <a href="#get-matched" className="find-match-btn">Find My Match</a>
+                <Link to="/meal-match-plans" className="find-match-btn">Find My Match</Link>
               </div>
             </div>
           ))}

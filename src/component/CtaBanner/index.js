@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './index.css';
 
 export default function CtaBanner() {
@@ -14,13 +15,13 @@ export default function CtaBanner() {
         </p>
 
         <div className="cta-buttons-row">
-          <a href="#get-matched" className="primary-btn">
+          <Link to="/meal-match-plans" className="primary-btn">
             Get Your Meal Match 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14"></path>
               <path d="m12 5 7 7-7 7"></path>
             </svg>
-          </a>
+          </Link>
           <a href="#menu" className="outline-btn">
             Explore the Menu
           </a>

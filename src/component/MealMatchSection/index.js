@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './index.css';
 
 const MealMatchSection = () => {
@@ -37,9 +38,11 @@ const MealMatchSection = () => {
               <span className="checkmark">✓</span> Match your taste
             </li>
           </ul>
-          <button className="meal-match-btn">
-            Start My Match →
-          </button>
+          <Link to="/meal-match-plans">
+            <button className="meal-match-btn">
+              Start My Match →
+            </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -46,8 +46,8 @@ const Navbar = () => {
         <div className="navbar-container">
 
           {/* LEFT - LOGO + BRAND */}
-          <a
-            href="#home"
+          <Link
+            to="/"
             className="navbar-brand"
             onClick={closeMenu}
           >
@@ -61,14 +61,18 @@ const Navbar = () => {
             <span className="navbar-title">
               MEAL MATCH
             </span>
-          </a>
+          </Link>
 
           {/* DESKTOP NAVIGATION */}
           <nav className="navbar-links desktop-nav">
-            <a href="#home">Home</a>
-            <a href="#menu">Menu</a>
+            <Link to="/">Home</Link>
+            <a href="#menu" onClick={closeMenu}>
+              Menu
+            </a>
             <Link to="/meal-match-plans">Meal Plans</Link>
-            <a href="#faq">FAQ</a>
+            <a href="#faq" onClick={closeMenu}>
+              FAQ
+            </a>
           </nav>
 
           {/* RIGHT SIDE */}
@@ -131,9 +135,9 @@ const Navbar = () => {
 
         <nav className="mobile-nav-links">
 
-          <a href="#home" onClick={closeMenu}>
+          <Link to="/" onClick={closeMenu}>
             Home
-          </a>
+          </Link>
 
           <a href="#menu" onClick={closeMenu}>
             Menu
