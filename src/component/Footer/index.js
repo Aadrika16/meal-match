@@ -34,7 +34,7 @@ export default function Footer() {
 
             {/* Instagram */}
             <a
-              href="#home"
+              href="https://www.instagram.com/mealmatch_hyderabad/"
               aria-label="Instagram"
               className="social-icon-btn"
             >
@@ -66,7 +66,7 @@ export default function Footer() {
               </svg>
             </a>
 
-            {/* Facebook */}
+            {/* Facebook
             <a
               href="#home"
               aria-label="Facebook"
@@ -87,7 +87,8 @@ export default function Footer() {
               </svg>
             </a>
 
-            {/* Twitter */}
+ */}
+            {/* Twitter 
             <a
               href="#home"
               aria-label="Twitter"
@@ -132,7 +133,7 @@ export default function Footer() {
                 />
               </svg>
             </a>
-
+*/}
           </div>
         </div>
 
