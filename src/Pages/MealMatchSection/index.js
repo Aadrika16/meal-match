@@ -7,6 +7,7 @@ import {
 
 import Navbar from "../../component/Navbar";
 import Footer from "../../component/Footer";
+import MealMatchPopup from "../../component/MealMatchPopup";
 
 import {
   FaCheck,
@@ -91,7 +92,7 @@ const MealMatchPlans = () => {
 
   return (
     <>
-
+     <MealMatchPopup />
       {/* =====================================================
           NAVBAR
       ====================================================== */}

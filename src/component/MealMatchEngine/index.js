@@ -7,6 +7,7 @@ import {
   FaTriangleExclamation,
 } from "react-icons/fa6";
 
+import MealMatchPopup from "../../component/MealMatchPopup";
 import "./index.css";
 
 
@@ -1117,6 +1118,7 @@ const MealMatchEngine = () => {
   return (
 
     <section className="engine-section">
+      <MealMatchPopup />
 
       <div className="engine-container">
 
